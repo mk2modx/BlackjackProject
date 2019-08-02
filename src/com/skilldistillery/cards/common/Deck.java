@@ -19,6 +19,7 @@ public class Deck {
 				cards.add(new Card(eachR, eachS));
 			}
 		}
+		Collections.shuffle(cards);
 		return cards;
 	}
 
