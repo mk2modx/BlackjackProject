@@ -48,9 +48,6 @@ public class BlackjackApp {
 				break;
 
 			case 2:
-				 if(dealer.getHand().isBlackjack()) {
-					System.out.println("Dealer Blackjack!");
-				}
 				System.out.println("You stay");
 				dealerHits();
 				break;
@@ -69,9 +66,15 @@ public class BlackjackApp {
 		player.getHand().addCard(dealer.dealing());
 		dealer.getHand().addCard(dealer.dealing());
 		dealer.getHand().addCard(dealer.dealing());
-		 if(player.getHand().isBlackjack()) {
-			System.out.println("Player Blackjack!");
+		 if(player.getHand().isBlackjack() && dealer.getHand().isBlackjack()) {
+			System.out.println("Push");
 		}
+		 else if (!player.getHand().isBlackjack()) {
+			 System.out.println("Player Blackjack!");
+		 }
+		 else if (!dealer.getHand().isBlackjack()) {
+			 System.out.println("Dealer Blackjack!");
+		 }
 	}
 
 	public void displayMenu() {
@@ -82,7 +85,7 @@ public class BlackjackApp {
 	}
 	public void displayCards() {
 		System.out.println("Your hand is : \n" + player.getHand() + " \n" + player.getHand().getHandValue()+"\n");
-		System.out.println("Dealer Hand is : \n" + dealer.getHand() + " " + dealer.getHand().getHandValue()+"\n");	}
+		System.out.println("Dealer Hand is : \n" + dealer.getHand() + " \n" + dealer.getHand().getHandValue()+"\n");	}
 
 	public void dealerHits() {
 		displayCards();
@@ -102,7 +105,7 @@ public class BlackjackApp {
 			displayCards();
 			
 			System.out.println("You Win");
-		}else if (dealer.getHand().getHandValue() < player.getHand().getHandValue()){
+		}else if (dealer.getHand().getHandValue() == player.getHand().getHandValue()){
 			
 			displayCards();
 			System.out.println("Push");
