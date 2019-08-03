@@ -24,6 +24,7 @@ public class Deck {
 	}
 
 	public int checkDeckSize() {
+		
 		return cards.size();
 	}
 
