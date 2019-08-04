@@ -19,6 +19,9 @@ private Deck deck = new Deck();
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
+	public Deck newDeck() {
+		return  deck = new Deck();
+	}
 	public Card hit() {
 		// return card from deck
 		return null;

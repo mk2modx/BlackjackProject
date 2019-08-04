@@ -7,71 +7,77 @@ public class GameDriver {
 	BlackjackDealer dealer = new BlackjackDealer();
 	BlackjackPlayer player = new BlackjackPlayer();
 
-//	static GameDriver gm = new GameDriver();
 	Scanner kb = new Scanner(System.in);
-
-//	public static void main(String[] args) {
-//		gm.run();
-//	}
 
 	public void run() {
 		System.out.println("Name?");
 		String getName = kb.next();
 		player.setName(getName);
-boolean playAgain = true;
-while (playAgain) {
-		dealer.getHand().clear();
-		player.getHand().clear();
-		dealCards();
-		hitOrStay();
-		System.out.println("Play Again? :   y/n");
-		String again = kb.next();
-		if (again.equals("y")) {
-			playAgain = true;
-		}else if (again.equals("n")) {
-			playAgain = false;
+		boolean playAgain = true;
+		while (playAgain) {
+			dealer.getHand().clear();
+			player.getHand().clear();
+			dealCards();
+			hitOrStay();
+			System.out.println();
+			System.out.println("-------------------");
+			System.out.println("Play Again? :   y/n");
+			System.out.println("-------------------");
+			if (dealer.getDeck().checkDeckSize() < 10) {
+				dealer.newDeck();
+			}
+			String again = kb.next();
+			if (again.equals("y")) {
+				System.out.println(dealer.getDeck().checkDeckSize() + ">> Cards Remaining <<\n\n");
+				
+				playAgain = true;
+			} else if (again.equals("n")) {
+				playAgain = false;
+			}
 		}
 	}
-	}
+
 	public void dealCards() {
-		System.out.println("Dealing new Hand.");
+		System.out.println("*** Dealing new Hand. ***");
+		System.out.println();
 		player.getHand().addCard(dealer.dealing());
 		player.getHand().addCard(dealer.dealing());
 		dealer.getHand().addCard(dealer.dealing());
 		dealer.getHand().addCard(dealer.dealing());
-		System.out.println(player.getHand() + " \n" + player.getHand().getHandValue() + "\n");
+		
+		System.out.println(player.getName()+ " your hand is : " + player.getHand() + " \n" + player.getHand().getHandValue() + "\n");
 		System.out.println("Dealer Hand is : \n" + dealer.getHand().getInitDealerHand() + "\n");
 
 	}
 
 	public void hitOrStay() {
 		boolean win = true;
-
 		while (win) {
-
 			int hitStay = 0;
-		
-			if (player.getHand().isBlackjack()) {
-				System.out.println("Player Blackjack!");
-				win = false;
-			} else if (dealer.getHand().isBlackjack()) {
-				System.out.println("Dealer Blackjack!");
-				win = false;
-			} else if (!player.getHand().isBlackjack() && !dealer.getHand().isBlackjack()) {
-				System.out.println();
-				System.out.println();
-			}
+//		
+//			if (player.getHand().isBlackjack()) {
+//				System.out.println("Player Blackjack!");
+//				win = false;
+//				break;
+//			} else if (dealer.getHand().isBlackjack()) {
+//				System.out.println("Dealer Blackjack!");
+//				win = false;
+//				break;
+//			} else if (!player.getHand().isBlackjack() && !dealer.getHand().isBlackjack()) {
+//				System.out.println();
+//				System.out.println();
+//			}
 			hitMenu();
 			hitStay = kb.nextInt();
-
 			switch (hitStay) {
 			case 1:
 				System.out.println("Getting one card.");
 				player.getHand().addCard(dealer.dealing());
 				hitMenu();
 				if (player.getHand().isBust()) {
-
+					System.out.println("\n\n\n");
 					System.out.println("You Busted!");
+					System.out.println("\n\n\n");
 					win = false;
 					break;
 				}
@@ -83,12 +89,10 @@ while (playAgain) {
 					win = false;
 					break;
 				}
-
 				win = false;
 				break;
 			default:
 				break;
-
 			}
 		}
 	}
@@ -100,7 +104,8 @@ while (playAgain) {
 			System.out.println("| Dealer Hits. |");
 			System.out.println("|--------------|");
 			System.out.println();
-			System.out.println("Dealer Hand is : \n" + dealer.getHand() + " \n" + dealer.getHand().getHandValue() + "\n");
+			System.out
+					.println("Dealer Hand is : \n" + dealer.getHand() + " \n" + dealer.getHand().getHandValue() + "\n");
 			if (dealer.getHand().isBust()) {
 				System.out.println("Dealer Busted!");
 
@@ -117,7 +122,6 @@ while (playAgain) {
 		} else if (dealer.getHand().getHandValue() == player.getHand().getHandValue()) {
 			displayCards();
 			System.out.println("Push");
-
 		}
 	}
 
@@ -126,6 +130,7 @@ while (playAgain) {
 		System.out.println("––––––––––––––––––------ - -  -  -  -");
 		System.out.println("Your Cards :");
 		System.out.println(player.getHand() + " \n" + player.getHand().getHandValue() + "\n");
+		System.out.println("––––––––––––––––––------ - -  -  -  -");
 		System.out.println("––––––––––––––––––------ - -  -  -  -");
 		System.out.println("Dealer Cards : \n" + dealer.getHand().getInitDealerHand() + "\n");
 		System.out.println("––––––––––––––––––------ - -  -  -  -");
