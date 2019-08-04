@@ -15,7 +15,6 @@ public abstract class AbstractBlackjackPlayer {
 		// stand move to dealer 
 	}
 	public BlackjackHand getHand() {
-	
 		
 		return hand;
 	}

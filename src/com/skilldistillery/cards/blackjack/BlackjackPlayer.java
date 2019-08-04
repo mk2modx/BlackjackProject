@@ -1,6 +1,7 @@
 package com.skilldistillery.cards.blackjack;
 
 import com.skilldistillery.cards.common.Card;
+import com.skilldistillery.cards.common.Deck;
 
 public class BlackjackPlayer extends AbstractBlackjackPlayer{
 private String name;
@@ -20,5 +21,11 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-	
+public Card hit(Deck deck) {
+	// return card from deck
+	return deck.dealCard() ;
+}
+public void stay() {
+	// stand move to dealer 
+}
 }

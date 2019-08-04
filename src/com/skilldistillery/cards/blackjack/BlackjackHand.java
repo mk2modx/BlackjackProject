@@ -32,8 +32,12 @@ public boolean isBlackjack() {
 public boolean isBust() {
 if(this.getHandValue() > 21) {
 
+	return true;
+}
 	return false;
 }
+public boolean foundWinner() {
+	
 	return true;
 }
 

@@ -9,7 +9,7 @@ private Deck deck = new Deck();
 	public Card dealing() {
 		
 		
-		return deck.dealCard();//removing 1 card from the deck
+		return deck.dealCard();
 	}
 
 	public Deck getDeck() {
@@ -18,6 +18,13 @@ private Deck deck = new Deck();
 
 	public void setDeck(Deck deck) {
 		this.deck = deck;
+	}
+	public Card hit() {
+		// return card from deck
+		return null;
+	}
+	public void stay() {
+		// stand move to dealer 
 	}
 
 }
